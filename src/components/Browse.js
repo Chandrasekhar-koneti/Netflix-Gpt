@@ -3,7 +3,7 @@ import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import useNowPlayingMovies from "./customhooks/useNowPlayingMovies copy";
-import usePopularMovies from "./customhooks/usePopularMovies copy";
+import usePopularMovies from "./customhooks/usePopularMovies ";
 import useTopRated from "./customhooks/useTopRated";
 import useUpcoming from "./customhooks/useUpcoming";
 import useTv from "./customhooks/useTv";
@@ -20,6 +20,7 @@ const Browse = () => {
   return (
     <div>
       <Header />
+
       {showGptSearch ? (
         <GptSearch />
       ) : (

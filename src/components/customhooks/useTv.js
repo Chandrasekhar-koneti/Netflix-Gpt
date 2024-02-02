@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTv } from "../../utils/movieSlice";
 import { API_OPTIONS } from "../../utils/constants";
 
 const useTv = () => {
+  const Tv = useSelector((store) => store.movies.Tv);
   const dispatch = useDispatch();
   const getTv = async () => {
     const data = await fetch(
@@ -14,7 +15,7 @@ const useTv = () => {
     dispatch(addTv(json.results));
   };
   useEffect(() => {
-    getTv();
+    !Tv && getTv();
   }, []);
 };
 
