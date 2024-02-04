@@ -3,7 +3,7 @@ import { lang } from "../utils/langConst";
 import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
 import { API_OPTIONS } from "../utils/constants";
-import { addGptMovieResult } from "../utils/gptSlice";
+import { addGptMovieResult, fetchingResults } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
@@ -23,10 +23,11 @@ const GptSearchBar = () => {
   };
 
   const handleGptSearchButton = async () => {
+    dispatch(fetchingResults(true));
     const gptQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query: " +
       searchTextRef.current.value +
-      "only give me names of  6 movies, comma separated like the example result given ahead. Example Result: sahoo,salaar,Radhe shyam,Bahubali1,Bahubali2,Aadipurush";
+      "only give me names of  6 movies, comma separated like the example result given ahead. Example Result: sahoo,salaar,Kartikeya2,Bahubali1,Bahubali2,RRR";
     const gptResults = await openai.chat.completions.create({
       messages: [{ role: "user", content: gptQuery }],
       model: "gpt-3.5-turbo",
@@ -40,6 +41,9 @@ const GptSearchBar = () => {
     dispatch(
       addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
     );
+    if (tmdbResults) {
+      dispatch(fetchingResults(false));
+    }
   };
 
   return (
