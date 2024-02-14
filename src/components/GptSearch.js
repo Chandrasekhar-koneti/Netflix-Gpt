@@ -30,7 +30,7 @@ const GptSearch = () => {
               ariaLabel="color-ring-loading"
               wrapperStyle={{}}
               wrapperClass="color-ring-wrapper"
-              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+              colors={["#007bff", "#3498db", "#7fb3d5", "#b8d7e9", "#cfeaf5"]}
             />
           </div>
         )}
